@@ -1,0 +1,43 @@
+id,file,title,tests,expected,doc_twin_needed,notes
+lang_latin_en,lang_latin_en.docx,Script latin_en,language renders with correct letters and direction,"native-script text, readable, no empty boxes",no,
+lang_latin_diacritics,lang_latin_diacritics.docx,Script latin_diacritics,language renders with correct letters and direction,"native-script text, readable, no empty boxes",no,
+lang_cyrillic_ru,lang_cyrillic_ru.docx,Script cyrillic_ru,language renders with correct letters and direction,"native-script text, readable, no empty boxes",no,
+lang_greek_el,lang_greek_el.docx,Script greek_el,language renders with correct letters and direction,"native-script text, readable, no empty boxes",no,
+lang_arabic_ar,lang_arabic_ar.docx,Script arabic_ar,language renders with correct letters and direction,"native-script text, readable, no empty boxes",yes,right-to-left
+lang_hebrew_he,lang_hebrew_he.docx,Script hebrew_he,language renders with correct letters and direction,"native-script text, readable, no empty boxes",yes,right-to-left
+lang_hebrew_niqqud,lang_hebrew_niqqud.docx,Script hebrew_niqqud,language renders with correct letters and direction,"native-script text, readable, no empty boxes",yes,right-to-left
+lang_devanagari_hi,lang_devanagari_hi.docx,Script devanagari_hi,language renders with correct letters and direction,"native-script text, readable, no empty boxes",no,
+lang_thai_th,lang_thai_th.docx,Script thai_th,language renders with correct letters and direction,"native-script text, readable, no empty boxes",no,
+lang_chinese_simp,lang_chinese_simp.docx,Script chinese_simp,language renders with correct letters and direction,"native-script text, readable, no empty boxes",no,
+lang_chinese_trad,lang_chinese_trad.docx,Script chinese_trad,language renders with correct letters and direction,"native-script text, readable, no empty boxes",no,
+lang_japanese,lang_japanese.docx,Script japanese,language renders with correct letters and direction,"native-script text, readable, no empty boxes",no,
+lang_korean,lang_korean.docx,Script korean,language renders with correct letters and direction,"native-script text, readable, no empty boxes",no,
+lang_vietnamese,lang_vietnamese.docx,Script vietnamese,language renders with correct letters and direction,"native-script text, readable, no empty boxes",no,
+lang_bidi_mixed,lang_bidi_mixed.docx,Bidi mixed,mixed right-to-left and left-to-right on one line,numbers and English stay sensibly placed inside the Arabic,yes,
+lang_all_in_one,lang_all_in_one.docx,All scripts,quick scan of every language,every line readable,no,
+emoji_basic,emoji_basic.docx,Emoji,emoji / family / flags rendering,"known-weak: record how they look (color, outline, or boxes)",no,expected imperfect; document behavior
+enc_normalization,enc_normalization.docx,Accents two ways,accent encoding,both lines identical,no,
+enc_zero_width_and_controls,enc_zero_width_and_controls.docx,Invisible chars,hidden characters,"no stray symbols, no visible artifacts",no,
+enc_astral_surrogates,enc_astral_surrogates.docx,Rare symbols,rare characters,PDF produced; glyphs or boxes both acceptable,no,
+font_calibri,font_calibri.docx,Font Calibri,common paid font (may be swapped),lookalike swap OK; note any visible difference / changed line breaks,no,paid font may not be installed
+font_cambria,font_cambria.docx,Font Cambria,common paid font (may be swapped),lookalike swap OK; note any visible difference / changed line breaks,no,paid font may not be installed
+font_arial,font_arial.docx,Font Arial,common paid font (may be swapped),lookalike swap OK; note any visible difference / changed line breaks,no,paid font may not be installed
+font_times_new_roman,font_times_new_roman.docx,Font Times New Roman,common paid font (may be swapped),lookalike swap OK; note any visible difference / changed line breaks,no,paid font may not be installed
+font_verdana,font_verdana.docx,Font Verdana,common paid font (may be swapped),lookalike swap OK; note any visible difference / changed line breaks,no,paid font may not be installed
+font_segoe_ui,font_segoe_ui.docx,Font Segoe UI,common paid font (may be swapped),lookalike swap OK; note any visible difference / changed line breaks,no,paid font may not be installed
+struct_large_table,struct_large_table.docx,Large table,table layout/pagination,clean multi-page table,no,
+struct_embedded_image,struct_embedded_image.docx,Embedded image,image + thumbnail,image present on page 1 and in the thumbnail,no,
+struct_header_footer,struct_header_footer.docx,Header/footer,running header/footer,present on all pages,no,
+struct_long_paragraph,struct_long_paragraph.docx,Long paragraph,wrapping,no overflow,no,
+struct_many_pages,struct_many_pages.docx,Many pages,long document,completes and shows all pages,no,watch for slow / never-finishing
+struct_headings_links,struct_headings_links.docx,Headings/styles,styles/headings,preserved hierarchy & styles,no,
+edge_minimal,edge_minimal.docx,Minimal,nearly empty document,optimized PDF still produced,no,
+name_unicode,résumé_整理_ملخص.docx,Filename unicode filename,unusual file name,uploads & converts cleanly,no,file name is the subject
+name_emoji,report_📊_v2.docx,Filename emoji in filename,unusual file name,uploads & converts cleanly,no,file name is the subject
+name_spaces_long,a very long file name with spaces a very long file name with spaces a very long file name with spaces a very long file name with spaces .docx,Filename long name + spaces,unusual file name,uploads & converts cleanly,no,file name is the subject
+malformed_not_a_zip,malformed_not_a_zip.docx,Fake Word file (plain text),not really a Word file,"rejected cleanly: no PDF, no crash, no retry loop",no,negative test
+malformed_corrupt_zip,malformed_corrupt_zip.docx,Damaged Word file,damaged / unreadable Word file,fails cleanly; does NOT keep retrying or reprocessing,no,negative test
+mislabeled_docx_as_doc,mislabeled_docx_as_doc.doc,Modern Word file with an old .doc name,file extension does not match the real format,record whether it still converts,no,edge: name vs real format
+malformed_zip_not_ooxml,malformed_zip_not_ooxml.docx,Valid zip that is not a Word document,"valid archive, wrong internal format","rejected / fails cleanly: no PDF, no crash, no retry loop",no,negative test: passes zip header sniff but is not OOXML
+malformed_empty,malformed_empty.docx,Zero-byte file,empty source file (0 bytes),"rejected / fails cleanly: no PDF, no crash, no retry loop",no,negative test: empty file
+stress_huge_table,stress_huge_table.docx,Stress huge table,conversion time / timeout,finishes within convert timeout; note stalls or timeouts,no,watch for slow / timed-out / never-finishing conversion
