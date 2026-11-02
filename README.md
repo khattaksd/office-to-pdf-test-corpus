@@ -13,7 +13,7 @@ planned — see below).
 
 | Path | What it is |
 |------|------------|
-| `docx/` | The test documents, one file per case (42 files). Each prints its own test id / what-to-expect header on page 1. |
+| `docx/` | The test documents, one file per case (46 files). Each prints its own test id / what-to-expect header on page 1. |
 | `manifest/manifest.md` | Human-readable table: every file, what it checks, and the expected PDF result. |
 | `manifest/manifest.csv` | The same manifest as CSV, for tracking a test pass. |
 | `RESOURCES.md` | The full **tester guide** — how to run a pass, how to judge pass/fail, and what each group of files checks. |
@@ -45,6 +45,9 @@ planned — see below).
 - **Tricky inputs** (`edge_*`, `malformed_*`, `mislabeled_*`, `name_*`) — a
   nearly empty doc, a fake non-zip, a corrupt zip, a valid-zip-but-not-Word file,
   a zero-byte file, a mislabeled extension, and unusual file names.
+- **Download filename** (`name_cd_*`) — filenames with spaces, `%`, quotes,
+  commas, and accents that must be quoted/encoded in the optimized PDF's
+  `Content-Disposition` header; the test is the download/preview filename.
 
 See `manifest/manifest.md` for the complete list.
 

@@ -1,6 +1,6 @@
 # QA corpus manifest
 
-42 documents. See RESOURCES.md for the tester guide and the hand-sourced extras (legacy .doc files, password-protected documents, paid fonts, more languages).
+46 documents. See RESOURCES.md for the tester guide and the hand-sourced extras (legacy .doc files, password-protected documents, paid fonts, more languages).
 
 | id | file | what it checks | expected in the PDF preview | .doc twin |
 |----|------|-------|-----------------|-----------|
@@ -40,6 +40,10 @@
 | name_unicode | `résumé_整理_ملخص.docx` | unusual file name | uploads & converts cleanly | no |
 | name_emoji | `report_📊_v2.docx` | unusual file name | uploads & converts cleanly | no |
 | name_spaces_long | `a very long file name with spaces a very long file name with spaces a very long file name with spaces a very long file name with spaces .docx` | unusual file name | uploads & converts cleanly | no |
+| name_cd_spaces | `Q4 Sales Report.docx` | download filename of the optimized PDF | downloads with the original name intact (special chars preserved) | no |
+| name_cd_percent | `50% complete draft.docx` | download filename of the optimized PDF | downloads with the original name intact (special chars preserved) | no |
+| name_cd_quotes_commas | `a "quoted", comma.docx` | download filename of the optimized PDF | downloads with the original name intact (special chars preserved) | no |
+| name_cd_accents | `Rapport été 2024.docx` | download filename of the optimized PDF | downloads with the original name intact (special chars preserved) | no |
 | malformed_not_a_zip | `malformed_not_a_zip.docx` | not really a Word file | rejected cleanly: no PDF, no crash, no retry loop | no |
 | malformed_corrupt_zip | `malformed_corrupt_zip.docx` | damaged / unreadable Word file | fails cleanly; does NOT keep retrying or reprocessing | no |
 | mislabeled_docx_as_doc | `mislabeled_docx_as_doc.doc` | file extension does not match the real format | record whether it still converts | no |

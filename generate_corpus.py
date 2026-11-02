@@ -267,6 +267,35 @@ for tid, fname, desc in [
                          doc_twin_needed="no", notes="file name is the subject"))
     print(f"  wrote {fname}")
 
+# Content-Disposition filename cases: the optimized PDF is stored on S3 with a
+# Content-Disposition header built from the source filename. These names have
+# characters that must be quoted/encoded in that header (spaces, '%', quotes,
+# commas, accents) -- the test is the filename shown when downloading/opening
+# the optimized PDF, not whether conversion succeeds.
+for tid, fname, desc in [
+    ("name_cd_spaces", "Q4 Sales Report.docx", "spaces in filename"),
+    ("name_cd_percent", "50% complete draft.docx", "percent sign in filename"),
+    ("name_cd_quotes_commas", 'a "quoted", comma.docx',
+     "quotes and commas in filename"),
+    ("name_cd_accents", "Rapport été 2024.docx", "accents + spaces in filename"),
+]:
+    doc = new_doc(tid, f"Content-Disposition filename: {desc}",
+                  "the download filename of the optimized PDF "
+                  "(Content-Disposition header)",
+                  "the optimized PDF downloads/opens with the ORIGINAL name intact "
+                  "(spaces and special characters preserved), not truncated at the "
+                  "first space/quote and not shown as a garbled or '_'-only name")
+    doc.add_paragraph(f"Filename under test: {fname}")
+    path = DOCX / fname
+    doc.save(path)
+    MANIFEST.append(dict(id=tid, file=fname, title=f"Content-Disposition {desc}",
+                         tests="download filename of the optimized PDF",
+                         expected="downloads with the original name intact "
+                                  "(special chars preserved)",
+                         doc_twin_needed="no",
+                         notes="targets the Content-Disposition filename fix"))
+    print(f"  wrote {fname}")
+
 # --- 6. Malformed inputs (should be rejected / fail cleanly) -------------------
 # A text file masquerading as .docx
 bad = DOCX / "malformed_not_a_zip.docx"

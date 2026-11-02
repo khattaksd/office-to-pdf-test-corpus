@@ -35,6 +35,10 @@ edge_minimal,edge_minimal.docx,Minimal,nearly empty document,optimized PDF still
 name_unicode,résumé_整理_ملخص.docx,Filename unicode filename,unusual file name,uploads & converts cleanly,no,file name is the subject
 name_emoji,report_📊_v2.docx,Filename emoji in filename,unusual file name,uploads & converts cleanly,no,file name is the subject
 name_spaces_long,a very long file name with spaces a very long file name with spaces a very long file name with spaces a very long file name with spaces .docx,Filename long name + spaces,unusual file name,uploads & converts cleanly,no,file name is the subject
+name_cd_spaces,Q4 Sales Report.docx,Content-Disposition spaces in filename,download filename of the optimized PDF,downloads with the original name intact (special chars preserved),no,targets the Content-Disposition filename fix
+name_cd_percent,50% complete draft.docx,Content-Disposition percent sign in filename,download filename of the optimized PDF,downloads with the original name intact (special chars preserved),no,targets the Content-Disposition filename fix
+name_cd_quotes_commas,"a ""quoted"", comma.docx",Content-Disposition quotes and commas in filename,download filename of the optimized PDF,downloads with the original name intact (special chars preserved),no,targets the Content-Disposition filename fix
+name_cd_accents,Rapport été 2024.docx,Content-Disposition accents + spaces in filename,download filename of the optimized PDF,downloads with the original name intact (special chars preserved),no,targets the Content-Disposition filename fix
 malformed_not_a_zip,malformed_not_a_zip.docx,Fake Word file (plain text),not really a Word file,"rejected cleanly: no PDF, no crash, no retry loop",no,negative test
 malformed_corrupt_zip,malformed_corrupt_zip.docx,Damaged Word file,damaged / unreadable Word file,fails cleanly; does NOT keep retrying or reprocessing,no,negative test
 mislabeled_docx_as_doc,mislabeled_docx_as_doc.doc,Modern Word file with an old .doc name,file extension does not match the real format,record whether it still converts,no,edge: name vs real format
